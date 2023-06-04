@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gbello.medapi.model.Medico;
-import com.gbello.medapi.repository.MedicoRepository;
+import com.gbello.medapi.repository.MedicosRepository;
 import com.gbello.medapi.exception.ResourceNotFoundException;
 
 import java.util.List;
@@ -12,10 +12,10 @@ import java.util.List;
 @Service
 public class MedicoService {
 
-    private final MedicoRepository medicoRepository;
+    private final MedicosRepository medicoRepository;
 
     @Autowired
-    public MedicoService(MedicoRepository medicoRepository) {
+    public MedicoService(MedicosRepository medicoRepository) {
         this.medicoRepository = medicoRepository;
     }
 
