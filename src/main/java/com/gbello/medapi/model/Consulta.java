@@ -16,6 +16,7 @@ public class Consulta {
     @ManyToOne
     private Medico medico;
 
+    @Column(name = "data_hora", nullable = false)
     private LocalDateTime dataHoraConsulta;
 
     public Long getId() {
@@ -47,6 +48,9 @@ public class Consulta {
     }
 
     public void setDataHoraConsulta(LocalDateTime dataHoraConsulta) {
+        if (dataHoraConsulta == null) {
+            throw new IllegalArgumentException("Data e hora da consulta não podem ser nulas");
+        }
         this.dataHoraConsulta = dataHoraConsulta;
     }
 }

@@ -16,6 +16,9 @@ public class ConsultaService {
     }
 
     public Consulta saveConsulta(Consulta consulta) {
+        if (consulta == null) {
+            throw new IllegalArgumentException("Consulta não pode ser nula");
+        }
         return consultaRepository.save(consulta);
     }
 
@@ -24,10 +27,16 @@ public class ConsultaService {
     }
 
     public Consulta getConsultaById(Long id) {
+        if (id == null) {
+            throw new IllegalArgumentException("Id não pode ser nulo");
+        }
         return consultaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Consulta", "id", id));
     }
 
     public void deleteConsulta(Long id) {
+        if (id == null) {
+            throw new IllegalArgumentException("Id não pode ser nulo");
+        }
         Consulta consulta = getConsultaById(id);
         consultaRepository.delete(consulta);
     }

@@ -17,8 +17,12 @@ public class ConsultaController {
     }
 
     @PostMapping
-    public Consulta createConsulta(@RequestBody Consulta consulta) {
-        return consultaService.saveConsulta(consulta);
+    public ResponseEntity<Consulta> createConsulta(@RequestBody Consulta consulta) {
+        if (consulta == null) {
+            throw new IllegalArgumentException("Consulta não pode ser nula");
+        }
+        Consulta savedConsulta = consultaService.saveConsulta(consulta);
+        return ResponseEntity.ok(savedConsulta);
     }
 
     @GetMapping
@@ -27,12 +31,19 @@ public class ConsultaController {
     }
 
     @GetMapping("/{id}")
-    public Consulta getConsultaById(@PathVariable Long id) {
-        return consultaService.getConsultaById(id);
+    public ResponseEntity<Consulta> getConsultaById(@PathVariable Long id) {
+        if (id == null) {
+            throw new IllegalArgumentException("Id não pode ser nulo");
+        }
+        Consulta consulta = consultaService.getConsultaById(id);
+        return ResponseEntity.ok(consulta);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteConsulta(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteConsulta(@PathVariable Long id) {
+        if (id == null) {
+            throw new IllegalArgumentException("Id não pode ser nulo");
+        }
         consultaService.deleteConsulta(id);
         return ResponseEntity.ok().build();
     }
