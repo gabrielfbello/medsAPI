@@ -23,6 +23,11 @@ public class MedicoService {
         return medicoRepository.findAll();
     }
 
+    public Medico getMedicoById(Long id) {
+        return medicoRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Medico", "id", id));
+    }
+
     public Medico createMedico(Medico medico) {
         return medicoRepository.save(medico);
     }
@@ -37,9 +42,10 @@ public class MedicoService {
     }
 
     public void deleteMedico(Long id) {
-        Medico medico = medicoRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Medico", "id", id));
-        medico.setAtivo(false);
-        medicoRepository.save(medico);
+        if (medicoRepository.existsById(id)) {
+            medicoRepository.deleteById(id);
+        } else {
+            throw new ResourceNotFoundException("Medico", "id", id);
+        }
     }
 }

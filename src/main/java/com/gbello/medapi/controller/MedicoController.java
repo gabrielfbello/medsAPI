@@ -29,6 +29,11 @@ public class MedicoController {
         return medicoService.createMedico(medico);
     }
 
+    @GetMapping("/{id}")
+    public Medico getMedicoById(@PathVariable Long id) {
+        return medicoService.getMedicoById(id);
+    }
+
     @PutMapping("/{id}")
     public Medico updateMedico(@PathVariable Long id, @RequestBody Medico medicoDetails) {
         return medicoService.updateMedico(id, medicoDetails);

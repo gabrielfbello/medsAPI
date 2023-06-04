@@ -31,6 +31,11 @@ public class PacienteController {
         return pacienteService.getPacienteById(id);
     }
 
+    @PutMapping("/{id}")
+    public Paciente updatePaciente(@PathVariable Long id, @RequestBody Paciente pacienteDetails) {
+        return pacienteService.updatePaciente(id, pacienteDetails);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletePaciente(@PathVariable Long id) {
         pacienteService.deletePaciente(id);

@@ -31,4 +31,12 @@ public class PacienteService {
         Paciente paciente = getPacienteById(id);
         pacienteRepository.delete(paciente);
     }
+
+    public Paciente updatePaciente(Long id, Paciente pacienteDetails) {
+        Paciente paciente = getPacienteById(id);
+        paciente.setNome(pacienteDetails.getNome());
+        paciente.setTelefone(pacienteDetails.getTelefone());
+        paciente.setEndereco(pacienteDetails.getEndereco());
+        return pacienteRepository.save(paciente);
+    }
 }
