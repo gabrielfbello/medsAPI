@@ -1,0 +1,293 @@
+openapi: "3.0.3"
+info:
+  title: "medAPI API"
+  description: "medAPI API"
+  version: "1.0.0"
+servers:
+  - url: "http://localhost:8080"
+paths:
+  /api/consultas:
+    post:
+      summary: "POST api/consultas"
+      operationId: "createConsulta"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Consulta"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Consulta"
+    get:
+      summary: "GET api/consultas"
+      operationId: "getAllConsultas"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Consulta"
+  /api/consultas/{id}:
+    get:
+      summary: "GET api/consultas/{id}"
+      operationId: "getConsultaById"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Consulta"
+    delete:
+      summary: "DELETE api/consultas/{id}"
+      operationId: "deleteConsulta"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+  /api/medicos:
+    get:
+      summary: "GET api/medicos"
+      operationId: "getAllMedicos"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Medico"
+    post:
+      summary: "POST api/medicos"
+      operationId: "createMedico"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Medico"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Medico"
+  /api/medicos/{id}:
+    get:
+      summary: "GET api/medicos/{id}"
+      operationId: "getMedicoById"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Medico"
+    put:
+      summary: "PUT api/medicos/{id}"
+      operationId: "updateMedico"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Medico"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Medico"
+    delete:
+      summary: "DELETE api/medicos/{id}"
+      operationId: "deleteMedico"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+  /api/pacientes:
+    post:
+      summary: "POST api/pacientes"
+      operationId: "createPaciente"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Paciente"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Paciente"
+    get:
+      summary: "GET api/pacientes"
+      operationId: "getAllPacientes"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Paciente"
+  /api/pacientes/{id}:
+    get:
+      summary: "GET api/pacientes/{id}"
+      operationId: "getPacienteById"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Paciente"
+    put:
+      summary: "PUT api/pacientes/{id}"
+      operationId: "updatePaciente"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Paciente"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Paciente"
+    delete:
+      summary: "DELETE api/pacientes/{id}"
+      operationId: "deletePaciente"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "object"
+components:
+  schemas:
+    Paciente:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+        nome:
+          type: "string"
+        email:
+          type: "string"
+        telefone:
+          type: "string"
+        cpf:
+          type: "string"
+        endereco:
+          type: "string"
+        ativo:
+          type: "boolean"
+    Medico:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+        nome:
+          type: "string"
+        email:
+          type: "string"
+        telefone:
+          type: "string"
+        crm:
+          type: "string"
+        especialidade:
+          type: "string"
+        endereco:
+          type: "string"
+        ativo:
+          type: "boolean"
+    Consulta:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+        paciente:
+          $ref: "#/components/schemas/Paciente"
+        medico:
+          $ref: "#/components/schemas/Medico"
+        dataHoraConsulta:
+          type: "string"
+          format: "date-time"
